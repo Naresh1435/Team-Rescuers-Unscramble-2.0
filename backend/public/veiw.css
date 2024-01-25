@@ -1,0 +1,104 @@
+body{
+    margin: 0;
+    padding: 3rem;
+    background-image: url('imgs/blob-scene-haikei.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+.cardcon{
+    width: 95%;
+}
+.card {
+    max-width: 100%;
+    height: 13vh;
+    background: linear-gradient(111.29deg, rgba(255, 255, 255, 0.53) -1.83%, rgba(255, 255, 255, 0) 109.95%);    border: 1px solid rgb(211, 211, 211);
+    backdrop-filter: blur(.8rem) saturate(180%);
+    -webkit-backdrop-filter: blur(.8rem) saturate(180%);
+    border-radius: 2rem;
+    
+  }
+  .nav{
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+}
+.nav .logo{
+    color: white;
+    font-size: 2rem;
+    font-weight: 1000;
+}
+.nav .options{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 35%;
+}
+.normalbut{
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+}
+.accdet{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 25%;
+    border: 1px white solid;
+    border-radius: 1.2rem;
+    padding: .2rem;
+}
+.accdet img{
+    width: 40%;
+    height: 40%;
+    scale: 1.6;
+    z-index: 2; 
+}
+.accdet{
+    font-size: 2rem;
+    color: white;
+}
+.btncon{
+    width: 95%;
+    padding: 2rem;
+}
+.btnarea{
+    width: 85%;
+    margin: auto;
+}
+.togbtn{
+    display: flex;
+    justify-content: space-between;
+}
+.togbtn button{
+    width: 30%;
+    font-size: 1.8rem;
+    color: white;
+    background: none;
+    border: 1px white solid;
+    padding: .5rem;
+    border-radius: 1rem;
+}
+.tasklabel{
+    padding: 2rem;
+    font-size: 1.6rem;
+    color: white;
+}
+.veiwcon{
+    width: 95%;
+    display: flex;
+    justify-content: end;
+}
+.veiwarea{
+    width: 95%;
+}
+.veiw{
+    width: 100%;
+    min-height: 80vh;
+    background-color: rgb(255, 255, 255,.2);
+    backdrop-filter: blur(.8rem) saturate(180%);
+    -webkit-backdrop-filter: blur(.8rem) saturate(180%);
+    border-radius: 1rem;
+    padding: 1rem;
+}

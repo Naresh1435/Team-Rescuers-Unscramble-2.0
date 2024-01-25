@@ -1,5 +1,5 @@
 import { Input } from '@rneui/base';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
  SafeAreaView,
  StatusBar,
@@ -19,7 +19,9 @@ import auth from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { useDispatch } from 'react-redux';
 import { navActions } from '../../store/slices/navSlice';
-import { verifyTokenUser } from '../api/userAPI';
+import { getDriver, verifyTokenUser } from '../api/userAPI';
+import { useNavigation } from '@react-navigation/native';
+import { userActions } from '../../store/slices/userSlice';
 
 
 GoogleSignin.configure({
@@ -31,6 +33,7 @@ GoogleSignin.configure({
 
 
 const Login = () => {
+    const navigator = useNavigation();
     const {width,height} = useWindowDimensions();
     const [email,setEmail] = useState(); 
     const dispatch = useDispatch();
@@ -40,9 +43,7 @@ const Login = () => {
         const {idToken} = await GoogleSignin.signIn();
         const authCredentials = auth.GoogleAuthProvider.credential(idToken);
         const result = await auth().signInWithCredential(authCredentials);
-        dispatch(navActions.setNav({
-            screen : 'Register'
-        }));
+        
     }
     const handleEmail = (e)=>{
         setEmail(e);
@@ -53,9 +54,15 @@ const Login = () => {
     const handleSignIn = async ()=>{
         try {
             const result = await auth().signInWithEmailAndPassword(email, password);
-            dispatch(navActions.setNav({
-                screen : 'Register'
-            }))
+            const data = await getDriver(result.user.uid);
+            dispatch(userActions.login({
+                uid : result.user.uid,
+                email : result.user.email,
+                fname : data.fname,
+                lname : data.lname,
+                phone : data.phone
+            }));
+            navigator.navigate('Home');
         } catch(error){
             if (error.code === 'auth/email-already-in-use') {
             console.log('That email address is already in use!');
@@ -72,9 +79,7 @@ const Login = () => {
     const handleSignUp = async ()=>{
         try {
             const result = await auth().createUserWithEmailAndPassword(email, password);
-            dispatch(navActions.setNav({
-                screen : 'Register'
-            }));
+            navigator.navigate('Register');
         } catch(error){
             if (error.code === 'auth/email-already-in-use') {
             console.log('That email address is already in use!');
@@ -90,14 +95,37 @@ const Login = () => {
     const handleToggle = ()=>{
         setToggle(!toggle);
     }
-    
+    const updateAuth = async (user)=>{
+        if(user) {
+            const result = await getDriver(user.uid);
+            console.log(result)
+            if(result) {
+                dispatch(userActions.login({
+                    userData : {
+                        fname : result.fname,
+                        lname : result.lname,
+                        phone : result.phone,
+                        email : user.email, 
+                    }, 
+                    userID : user.uid, 
+                }));
+                navigator.navigate('Explore');
+            } else {
+                navigator.navigate('Register');
+            }
+            
+        }
+    }
+    useEffect(()=>{
+        auth().onAuthStateChanged(updateAuth);
+    },[]);
  return (
   <SafeAreaView style={styles.safeArea}>
-    <View style={{flex:1, height:height}}>
+    {/* <View style={{flex:1, height:height}}>
         <ImageBackground source={image} style={{flex:1, justifyContent:'center', height:height}}>
         </ImageBackground>
-    </View>
-    <View style={tw`flex h-full justify-center items-center`}>
+    </View> */}
+    <View style={tw`flex h-full bg-gray-900 justify-center items-center`}>
             <View style={tw`flex flex-col text-center`} >
                 <View style={tw`justify-start`}>
                             <Text style={tw`text-center text-4xl text-white font-bold mb-2`}>MappIT</Text>

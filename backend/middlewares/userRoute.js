@@ -1,11 +1,11 @@
-const { loginQuery, signUpQuery, verifyForMob } = require("../queries/userQueries");
+const { loginQuery, signUpQuery, verifyForMob, driverAddQuery, getDriver, getAllDriversQuery } = require("../queries/userQueries");
 
 exports.login = async (req,res)=>{
     try {
         const {email,password} = req.body;
         const result = await loginQuery(email,password);
         if(result.auth) {
-            res.json({res:true,auth:true, authData: result.response});
+            res.redirect('/home');
         } else {
             res.status(401).json({res:true,auth:false});
         }
@@ -25,7 +25,7 @@ exports.signUp = async (req,res)=>{
         }
         const result = await signUpQuery(email,password,userData);
         if(result.auth) {
-            res.json({res:true,auth:true, authData: result.response});
+            res.redirect('/home');
         } else {
             res.status(401).json({res:true,auth : false, msg:result.msg});
         }
@@ -36,16 +36,36 @@ exports.signUp = async (req,res)=>{
 
 exports.driverVerify = async (req,res)=>{
     try {
-        const token = req.get("Token");
-        console.log(token);
-        const result = await verifyForMob(token);
+        const id = req.query.uid;
+        const result = await getDriver(id);
         console.log(result);
-        if(result.auth) {
-            res.json({res:true,auth : true, authData : result.response});
+        if(result) {
+            res.json({res:true,auth : true, authData : result});
         } else {
-            res.json({res : false, msg : "Invalid Token"});
+            res.status(401).json({res : false, msg : "Invalid User"});
         }
     } catch (err) {
         console.log("Error Authentication",err);
     }
+}
+
+exports.driverAdd = async (req,res)=>{
+    try {
+        const result = await driverAddQuery(req.body);
+        res.json({res:true, auth : true});
+    } catch(err) {
+        res.status(501).json({res:false, msg : "Server Error"});
+    }
+}
+
+exports.getAllDrivers = async ()=>{
+    try {
+        const drivers = await getAllDriversQuery();
+        if (drivers) {
+            res.json({res:true, users: drivers})
+        }
+    }  catch (err) {
+        console.log("Error in getting All drivers", err);
+        res.status(501).json({res:false, msg : "Server Error"});
+    }  
 }

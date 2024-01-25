@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="homepage.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="cardcon">
+        <div class="card">
+            <div class="nav">
+                <div class="logo">MappIT</div>
+                <div class="options">
+                    <button class="normalbut">Home</button>
+                    <button class="normalbut">Services</button>
+                    <button class="normalbut">Team</button>
+                    <div class="accdet">
+                        <img src="imgs/Profile-Pic.png" alt="">
+                        <i class="fa-solid fa-gear"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="cardscon">
+        <div class="infohead">
+            Unique ID :  <%= locals.UID%>
+        </div>
+        <div class="cardslide">
+            <div class="slidecard">
+                <div class="cardhead wallethead">
+                    <div class="wallettext">Wallet</div>
+                    <button class="addbtn" onclick="location.href='/addmoney'">Add cash</button>
+                    
+                </div>
+                <div class="cardbody">
+                    Rs <%= locals.wallet%>
+                </div>
+            </div>
+            <div class="slidecard">
+                <div class="cardhead wallethead">
+                    <div class="wallettext">Completed Tasks </div>
+                    <button class="addbtn" onclick="location.href='/newTask'">Add Task</button>
+                    
+                </div>
+                <div class="cardbody">
+                    12
+                </div>
+            </div>
+            <div class="slidecard">
+                <div class="cardhead">
+                    Pending Tasks
+                </div>
+                <div class="cardbody">
+                    4
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://kit.fontawesome.com/34b63b38cf.js" crossorigin="anonymous"></script>
+</body>
+</html>

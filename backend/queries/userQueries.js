@@ -7,8 +7,14 @@ exports.loginQuery = async (email, password) => {
         const result = await signInWithEmailAndPassword(auth,email, password);
         console.log(result);
         if(result) {
-            console.log(result);
-            return {auth : true, response : result}
+            const dbRef = ref(db);
+            const snapshot = await get(child(dbRef,`masters/${result.user.uid}`));
+            if(snapshot.exists()) {
+                return {auth : true, response : snapshot.val()}
+            } else {
+                return {auth : false}
+            }
+           
         } else {
             return {auth : false}
         }
@@ -19,12 +25,15 @@ exports.loginQuery = async (email, password) => {
     }
 }
 
-exports.signUpQuery = async (email,password) => {
+exports.signUpQuery = async (email,password, userData) => {
     try {
         const result = await createUserWithEmailAndPassword(auth,email, password);
         console.log(result);
         if(result) {
             console.log(result);
+            const dbRef = ref(db);
+            await set(child(dbRef,`/masters/${result.user.uid}`),{...userData, email, wallet : 0.0, historyWallet : []});
+
             return {auth : true, response : result}
         } else {
             return {auth : false}
@@ -36,12 +45,45 @@ exports.signUpQuery = async (email,password) => {
     }
 }
 
-exports.verifyForMob = async(uuid) =>{
+
+
+exports.driverAddQuery = async(data)=>{
     try {
         const dbRef = ref(db);
-        const data = get(child())
-    } catch (err) {
-        console.log('User Data not available', err);
-        return {auth:false}
+        await set(child(dbRef,`drivers/${data.uid}`),{fname : data.fname, lname : data.lname, email : data.email, phone : data.phone, wallet : 0.0, history : [] });
+        return true
+    } catch(err) {
+        console.error("Error in Adding Users");
+        return fasle
+    }
+}
+
+exports.getAllDriversQuery  = async()=>{
+    try {
+        const dbRef = ref(db);
+        let snapshot = await get(child(dbRef , "drivers"));
+        if(snapshot.exists()){
+            return snapshot.val()
+        } else {
+            return false
+        }
+    } catch(err) {
+        console.error("Error in getting drivers", err);
+        return false;
+    }
+}
+
+exports.getDriver  = async(id)=>{
+    try {
+        const dbRef = ref(db);
+        let snapshot = await get(child(dbRef , `drivers/${id}`));
+        if(snapshot.exists()){
+            return snapshot.val()
+        } else {
+            return false
+        }
+    } catch(err) {
+        console.error("Error in getting drivers", err);
+        return false;
     }
 }

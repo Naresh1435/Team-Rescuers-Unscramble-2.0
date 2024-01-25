@@ -2,8 +2,6 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import store from './store/store';
 import { Provider } from 'react-redux';
-import Auth from './src/Auth';
-import AuthCheck from './src/components/AuthCheck';
 import tw from 'tailwind-react-native-classnames';
 import Index from './src/Index';
 

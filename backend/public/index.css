@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+body{
+    margin: 0;
+    padding: 3rem;
+    background-image: url('imgs/blob-scene-haikei.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+.cardcon{
+    width: 95%;
+}
+.card {
+    max-width: 100%;
+    height: 80vh;
+    background: linear-gradient(111.29deg, rgba(255, 255, 255, 0.53) -1.83%, rgba(255, 255, 255, 0) 109.95%);    border: 1px solid rgb(211, 211, 211);
+    backdrop-filter: blur(.8rem) saturate(180%);
+    -webkit-backdrop-filter: blur(.8rem) saturate(180%);
+    border-radius: 2rem;
+    
+  }
+.bgvect{
+    position: fixed;
+}
+.nav{
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+}
+.nav .logo{
+    color: white;
+    font-size: 2rem;
+    font-weight: 1000;
+}
+.nav .options{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 35%;
+}
+.normalbut{
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+}
+.logbut{
+    border: 1px solid white;
+    background: none;
+    color: white;
+    font-size: 1.2rem;
+    border-radius: .3rem;
+    padding: .3rem;
+    transition: .1s;
+    width: 10vw;
+    margin-left: 1rem;
+}
+.logbut:hover{
+    scale: 1.2;
+    background: white;
+    color: black;
+}
+.desc{
+    width: 60%;
+    padding: 1.3rem;
+    
+}
+.desc .text{
+    color: white;
+    font-size: 1.1rem;
+    line-height: 1.5rem;
+
+}
+.desc .text div{
+    padding: .5rem;
+}

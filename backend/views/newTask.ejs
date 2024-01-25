@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="login.css">
+    <title>Add New Task</title>
+</head>
+<body>
+    <div class="cardcon">
+        <div class="card">
+            <div class="leftcard">
+                <div class="logo" onclick="location.href='/'">MappIT</div>
+                <div class="desc">
+                    
+                </div>
+                <img src="imgs/Neils-nobg.png" alt="" width="55%" height="50%" style="position: fixed;bottom: 0;">
+            </div>
+            <div class="rightcard">
+                <form class="inpfld" action="/addTask" method="POST" enctype="application/x-www-form-urlencoded">
+                    <input type="text" style="margin-top: 10px ;"  placeholder="Task Name" name="name" >
+                    <input type="text" style="margin-top: 10px ;"  placeholder="Task Destination" name="destination" >
+                    <input type="text" style="margin-top: 10px ;"  placeholder="Task Amount" name="amount">
+                    <select name = "uid">
+                            <% locals.drivers.forEach(driver=>{ %>
+                                <option value="<%= driver.id%>"> <%= driver.fname %></option>
+                            <% }) %>
+                    </select>
+                    <button type="submit"  style="margin-top: 10px ;">Add New Task</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

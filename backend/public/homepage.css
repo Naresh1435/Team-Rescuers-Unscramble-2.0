@@ -1,0 +1,117 @@
+body{
+    margin: 0;
+    padding: 3rem;
+    background-image: url('imgs/blob-scene-haikei.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+.cardcon{
+    width: 95%;
+}
+.card {
+    max-width: 100%;
+    height: 13vh;
+    background: linear-gradient(111.29deg, rgba(255, 255, 255, 0.53) -1.83%, rgba(255, 255, 255, 0) 109.95%);    border: 1px solid rgb(211, 211, 211);
+    backdrop-filter: blur(.8rem) saturate(180%);
+    -webkit-backdrop-filter: blur(.8rem) saturate(180%);
+    border-radius: 2rem;
+    
+  }
+  .nav{
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+}
+.nav .logo{
+    color: white;
+    font-size: 2rem;
+    font-weight: 1000;
+}
+.nav .options{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 35%;
+}
+.normalbut{
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+}
+.accdet{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 25%;
+    border: 1px white solid;
+    border-radius: 1.2rem;
+    padding: .2rem;
+}
+.accdet img{
+    width: 40%;
+    height: 40%;
+    scale: 1.6;
+    z-index: 2; 
+}
+.accdet{
+    font-size: 2rem;
+    color: white;
+}
+.cardscon{
+    padding: 2rem;
+}
+.cardslide{
+    padding: 1rem;
+    display: flex;
+    gap: 1rem;
+    overflow: scroll;
+    border: 1px white solid;
+    border-radius: 2rem;
+    flex-wrap: nowrap;
+}
+.cardslide::-webkit-scrollbar {
+    display: none;
+}
+.slidecard{
+    min-width: 30vw;
+    height: 40vh;
+    background: linear-gradient(111.29deg, rgba(255, 255, 255, 0.53) -1.83%, rgba(255, 255, 255, 0) 109.95%);    border: 1px solid rgb(211, 211, 211);
+    backdrop-filter: blur(.8rem) saturate(180%);
+    -webkit-backdrop-filter: blur(.8rem) saturate(180%);
+    border-radius: 2rem;
+}
+.slidecard .cardhead{
+    padding: 2rem;
+    color: white;
+    font-size: 1.4rem;
+    font-weight: 800;
+    width: 85%;
+}
+.cardbody{
+    display: flex;
+    justify-content: center;
+    font-size: 4rem;
+    color: white;
+    font-weight: 1000;
+}
+.infohead{
+    font-size: 1.5rem;
+    color: white;
+    padding: 1.5rem;
+}
+.wallethead{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.addbtn{
+    font-size: 1.4rem;
+    background-color: #00A300;
+    padding: .6rem;
+    border: 1px white solid;
+    color: white;
+    border-radius: .6rem;
+}

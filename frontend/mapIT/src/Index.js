@@ -1,25 +1,24 @@
-import { Platform, StyleSheet, Text, View } from 'react-native'
+import { Platform, StyleSheet, Text, View,useWindowDimensions,ImageBackground } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Geolocation from '@react-native-community/geolocation';
-import Home from './screens/Home';
 import tw from 'tailwind-react-native-classnames';
 import Navigation from './components/Navigation';
-
+import image from '../public/bg.png';
 import Login from './screens/Login';
 import Register from './screens/Register';
-// import Booking from './Booking';
-// import Wallet from './Wallet';
-// import Profile from './Profile';
-// import Register from './Register';
+import Explore from './screens/Explore';
+import SignOut from './components/SignOut';
+
 const Stack = createNativeStackNavigator();
 
 
 
 const Index = () => {
     const [locationStatus, setLocationStatus] = useState(false);
+    const {width,height} = useWindowDimensions();
     useEffect(()=>{
         const requestLocation = async () =>{
             if(Platform.OS === 'ios') {
@@ -45,39 +44,25 @@ const Index = () => {
     const NavCon = ()=>{
         return (
         <NavigationContainer>
-         <View style={tw`h-3/6 bg-gray-100`}>
+        
+         <View style={tw`h-5/6 bg-gray-900`}>
          <View style={tw`h-full`}>
         <SafeAreaProvider>
             
-        <Stack.Navigator initialRouteName='Home'>
+        <Stack.Navigator initialRouteName='Login'>
             <Stack.Screen 
-            name='Home'
-            component={Home}
+            name='Explore'
+            component={Explore}
             options={{
                 headerShown:false
             }}
             />
-            {/* <Stack.Screen 
-            name='Booking'
-            component={Booking}
-            options={{
-                headerShown:false
-            }}
+            <Stack.Screen name="SignOut"
+                component={SignOut}
+                options={{
+                    headerShown : false
+                }}
             />
-            <Stack.Screen 
-            name='Wallet'
-            component={Wallet}
-            options={{
-                headerShown:false
-            }}
-            />
-            <Stack.Screen 
-            name='Profile'
-            component={Profile}
-            options={{
-                headerShown:false
-            }}
-            /> */}
             <Stack.Screen name="Login"
                 component={Login}
                 options={{
@@ -111,6 +96,7 @@ const Index = () => {
     }
   return (
     <View style={tw`h-full bg-white`}>
+            
         <NavCon/>
     
     </View>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="login.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="cardcon">
+        <div class="card">
+            <div class="leftcard">
+                <div class="logo" onclick="location.href='/'">MappIT</div>
+                <div class="desc">
+                    
+                </div>
+                <img src="imgs/Neils-nobg.png" alt="" width="55%" height="50%" style="position: fixed;bottom: 0;">
+            </div>
+            <div class="rightcard">
+                <form class="inpfld" action="/login" method="POST" enctype="application/x-www-form-urlencoded">
+                    <input type="text" placeholder="Username" name="email" id="">
+                    <input type="text" placeholder="Password" name="password">
+                    <button>Login</button>
+                </form>
+                <div class="orfld">
+                    <hr>
+                    <span>or</span>
+                    <hr>
+                </div>
+                <div class="signfld">
+                    <button onclick="location.href='/signup'">Sign up with us</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
